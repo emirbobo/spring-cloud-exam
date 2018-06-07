@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: web
+  thymeleaf:
+    cache:false
+    prefix:classpath:/templates/
+    check-template-location:true
+    suffix:.html
+    encoding:UTF-8
+    content-type:text/html
+    mode:HTML5
+
+server:
+  port: 9510
+  address: 0.0.0.0
+#  sessionTimeout:30
+#  contextPath:/springboot
+  view:
+    prefix: /WEB-INF/jsp/
+    suffix: .jsp
+
+DBService:
+  ribbon:
+    eureka:
+      enabled: false
+    listOfServers: localhost:9501,localhost:9502
+    ServerListRefreshInterval: 15000
+

@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: DBService
+
+server:
+  port: 9502
