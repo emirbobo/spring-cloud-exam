@@ -1,4 +1,4 @@
-package com.hmblsy.entity;
+package com.spcl.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

@@ -1,4 +1,4 @@
-package com.hmblsy.db;
+package com.spcl.db;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

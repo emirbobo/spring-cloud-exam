@@ -1,6 +1,6 @@
-package com.hmblsy.web;
+package com.spcl.web;
 
-import com.hmblsy.entity.Record;
+import com.spcl.entity.Record;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

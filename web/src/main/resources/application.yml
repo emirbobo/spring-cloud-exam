@@ -3,7 +3,7 @@ spring:
     name: web
   thymeleaf:
     cache:false
-    prefix:classpath:/templates/
+    prefix:classpath:E:/work/spring-cloud-exam/web/src/main/resources/templates/
     check-template-location:true
     suffix:.html
     encoding:UTF-8
