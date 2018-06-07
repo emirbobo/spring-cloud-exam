@@ -32,6 +32,12 @@
     </div>
 </div>
 <pre>
+<form target="reqiframe" method="post" action="/record/create" enctype="application/x-www-form-urlencoded">
+    Name:<input name="name" placeholder="name"><button type="submit">创建</button>
+</form>
+<form target="reqiframe" method="get" action="/record/get" enctype="application/x-www-form-urlencoded">
+    ID:<input name="id" placeholder="ID"><button type="submit">获取</button>
+</form>
 <a href="/hi" target="reqiframe">负载均衡访问服务aaa</a>
 <hr>
 <iframe name="reqiframe" style="width: 900px;height: 200px"></iframe>
