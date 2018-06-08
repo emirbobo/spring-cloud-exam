@@ -1,6 +1,7 @@
 package com.spcl.controller;
 
 import com.spcl.entity.Record;
+import com.spcl.util.UtilSystem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.ApplicationContext;
@@ -14,7 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.context.IContext;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.AbstractConfigurableTemplateResolver;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.templateresolver.FileTemplateResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
 
+import java.io.StringWriter;
 import java.util.*;
 
 /**
@@ -69,6 +79,31 @@ public class RecordController {
     }
 
 
+
+    @RequestMapping("/testRender")
+    public String testRender(Model model,@RequestParam String name)
+    {
+//        FileTemplateResolver templateResolver = new FileTemplateResolver();
+//        templateResolver.setPrefix("E:\\work\\spring-cloud-exam\\web\\src\\main\\resources\\templates\\");
+//        templateResolver.setTemplateMode(TemplateMode.HTML);
+//        templateResolver.setSuffix(".html");
+//        templateResolver.setCacheable(false);
+        AbstractConfigurableTemplateResolver templateResolver = UtilSystem.getTemplateResolver();
+
+        TemplateEngine templateEngine = new TemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+        StringWriter stringWriter = new StringWriter();
+        Context ctx = new Context(Locale.CHINESE);
+        ctx.setVariable("vstr", name + "-" + new Date().toString());
+        templateEngine.process("render_element", ctx, stringWriter);
+        String nStr = stringWriter.toString();
+//        final WebContext ctx = new WebContext(request, response,
+//                servletContext, request.getLocale());
+//        ctx.setVariable("n",n);
+        model.addAttribute("n",nStr);
+        return "test_render";
+//        return "Get DBService  : "+result.getId()+" "+result.getName();
+    }
 
     @RequestMapping("/hi")
     public String home() {

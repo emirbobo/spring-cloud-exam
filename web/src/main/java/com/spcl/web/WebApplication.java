@@ -1,6 +1,7 @@
 package com.spcl.web;
 
 import com.spcl.entity.Record;
+import com.spcl.util.UtilSystem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -51,44 +52,9 @@ public class WebApplication {
 	@Autowired
 	RestTemplate restTemplate;
 
-	String getSrcDirPath()
-	{
-		String classFilePath = this.getClass().getResource("").getPath();
-		String classDir = "/target/classes/com/spcl/web/";
-//		System.out.print("\n\n\nclassFilePath="+classFilePath+"\n\n\n");
-		if(classFilePath.endsWith(classDir))
-		{
-			return classFilePath.substring(0,classFilePath.length() - classDir.length())+"/src";
-		}
-		return null;
-	}
-
 	@Bean
 	public AbstractConfigurableTemplateResolver templateResolver(){
-		AbstractConfigurableTemplateResolver templateResolver = null;
-		String srcDirPath = getSrcDirPath();
-		if(srcDirPath != null) // 如果使用spring-boot从源码目录启动，则不缓存内容
-		{
-			srcDirPath+="/main/resources/templates/";
-			templateResolver = new FileTemplateResolver();
-			templateResolver.setPrefix(srcDirPath);
-			templateResolver.setCacheable(false);
-		}
-		else
-		{
-			templateResolver = new ClassLoaderTemplateResolver();
-			templateResolver.setPrefix("templates/");
-			templateResolver.setCacheable(true);
-		}
-//		templateResolver.setPrefix("templates/");
-
-
-		templateResolver.setCharacterEncoding("utf-8");
-		templateResolver.setSuffix(".html");
-		// HTML is the default value, added here for the sake of clarity.
-		templateResolver.setTemplateMode(TemplateMode.HTML);
-		// Template cache is true by default. Set to false if you want
-		// templates to be automatically updated when modified.
+		AbstractConfigurableTemplateResolver templateResolver = UtilSystem.getTemplateResolver();
 
 		return templateResolver;
 	}
