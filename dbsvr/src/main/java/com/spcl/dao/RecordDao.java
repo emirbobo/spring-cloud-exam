@@ -1,10 +1,7 @@
 package com.spcl.dao;
 
 import com.spcl.entity.Record;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -21,6 +18,7 @@ public interface  RecordDao {
     Record findByName(@Param(value = "username") String username);
 
     @Insert("Insert into record (name) values (#{name})")
+    @Options(useGeneratedKeys = true, keyProperty = "record.id")
     void createRecord(Record user);
 
     @Select("select * from Record")
