@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/6/7.
@@ -33,5 +34,13 @@ public class RecordController
         record.setName(name);
         recordDao.createRecord(record);
         return record;
+    }
+
+    @RequestMapping("/records")
+    @ResponseBody
+    public List<Record> list()
+    {
+        List<Record> records = recordDao.getAllRecords();
+        return records;
     }
 }

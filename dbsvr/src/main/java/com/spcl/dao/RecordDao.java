@@ -24,5 +24,5 @@ public interface  RecordDao {
     void createRecord(Record user);
 
     @Select("select * from Record")
-    List<Record> getRecords();
+    List<Record> getAllRecords();
 }

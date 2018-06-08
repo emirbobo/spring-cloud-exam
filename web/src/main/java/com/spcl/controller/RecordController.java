@@ -55,11 +55,16 @@ public class RecordController {
 //		Record result = restTemplate.getForObject("http://localhost:9501/dbhi", Record.class);
 //		Quote quote = restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/random", Quote.class);
 //		log.info(quote.toString());
-
-
-
         model.addAttribute("record",result);
         return "record";
+//        return "Get DBService  : "+result.getId()+" "+result.getName();
+    }
+
+    @RequestMapping(value = "/records",method = RequestMethod.GET)
+    public String get(Model model) {
+        List<Record> result = this.restTemplate.getForObject("http://DBService/records", List.class);
+        model.addAttribute("recordList",result);
+        return "record-list";
 //        return "Get DBService  : "+result.getId()+" "+result.getName();
     }
 
