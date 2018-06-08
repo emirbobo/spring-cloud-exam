@@ -4,7 +4,10 @@ import com.spcl.dao.RecordDao;
 import com.spcl.entity.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 /**
  * Created by Administrator on 2018/6/7.
@@ -17,7 +20,7 @@ public class RecordController
 
     @RequestMapping(value = "/record/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Record getById(@RequestParam int id)
+    public Record getById(@PathVariable int id)
     {
         return recordDao.findById(id);
     }
