@@ -18,7 +18,7 @@ public interface  RecordDao {
     Record findByName(@Param(value = "username") String username);
 
     @Insert("Insert into record (name) values (#{name})")
-    @Options(useGeneratedKeys = true, keyProperty = "record.id")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     void createRecord(Record user);
 
     @Select("select * from Record")
