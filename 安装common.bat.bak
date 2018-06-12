@@ -1,4 +1,4 @@
 title common
-cd common
+cd dbsvr
 call mvn install
 pause
