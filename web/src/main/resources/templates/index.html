@@ -3,41 +3,41 @@
 <head>
     <meta content="text/html;charset=UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet"/>
 </head>
 <body>
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">访问model</h3>
-    </div>
-    <div class="panel-body">
-        <span th:text="${record.name}"></span>
-    </div>
-</div>
-<div th:if="${not #lists.isEmpty(recordList)}">
+<div class="row">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">列表</h3>
+            <h3 class="panel-title">记录列表</h3>
         </div>
         <div class="panel-body">
-            <ul class="list-group">
-                <li class="list-group-item" th:each="r : ${recordList}">
-                    <span th:text="${r.name}"></span>
-                    <span th:text="${r.id}"></span>
-                    <button class="btn" th:onlick="'getName(\''+${r.name}+'\');'">获得名字</button>
-                </li>
-            </ul>
+
+            <div style="width: 100%">
+                <div style="float: left;width: 400px;display: inline-block;">
+        <pre>
+        <form target="reqiframe" method="post" action="/record/create" enctype="application/x-www-form-urlencoded">
+        创建：    Name:<input name="name" placeholder="name"><button type="submit">创建</button>
+        </form>
+        <form target="reqiframe" method="get" action="/record/get" enctype="application/x-www-form-urlencoded">
+        查询：    ID:<input name="id" placeholder="ID"><button type="submit">获取</button>
+        </form>
+        <a href="/records" target="reqiframe">记录列表</a>
+        <a href="/hi" target="reqiframe">负载均衡访问服务aaa</a>
+            </pre>
+                </div>
+                <div style="float: left;width: 700px;display: inline-block">
+        <pre><iframe name="reqiframe" style="width: 900px;height: 400px;border: 0"></iframe>
+        </pre>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<pre>
-<a href="/hi" target="reqiframe">负载均衡访问服务</a>
-<hr>
-<iframe name="reqiframe" style="width: 900px;height: 200px"></iframe>
 </pre>
 <script th:src="@{/ext/jquery.min.js}"></script>
-<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
 <script th:inline="javascript">
     var single = [[${singlePerson}]];
     console.log(single.name+"/"+single.age);

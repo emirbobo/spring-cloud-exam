@@ -1,17 +1,16 @@
-package com.hmblsy.db;
+package com.spcl;
 
-import com.hmblsy.entity.Record;
+import com.spcl.entity.Record;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
@@ -22,9 +21,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 @SpringBootApplication
 @RestController
 @EnableDiscoveryClient
+@ComponentScan(basePackages = "com.spcl")
+@MapperScan("com.spcl.dao")
 public class DbsvrApplication {
 
 	public static void main(String[] args) {
+		System.out.print("\nspring-boot.run.profiles : "+System.getProperty("spring-boot.run.profiles")+"\n");
+		System.out.flush();
 		SpringApplication.run(DbsvrApplication.class, args);
 	}
 //	@Value("${server.port}")
@@ -47,7 +50,7 @@ public class DbsvrApplication {
 
 	@RequestMapping("/dbhi")
 	public Record home() {
-		return new Record(rid.incrementAndGet(),"time:["+new Date()+"]"+System.getProperty("spring-boot.run.profiles"));
+		return new Record(rid.incrementAndGet(),"time:["+new Date()+"]"+System.getProperty("spring-boot.run.profiles")+" "+System.getProperty("spring.profiles.active"));
 	}
 //	@RequestMapping("/hi")
 //	public String home() {

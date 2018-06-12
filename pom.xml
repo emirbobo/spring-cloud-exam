@@ -4,17 +4,23 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>root</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<modules>
 		<module>common</module>
+<<<<<<< HEAD
 		<module>dbsvr</module>
 		<module>regcenter</module>
 		<module>web</module>
+=======
+		<module>web</module>
+		<module>dbsvr</module>
+		<module>regcenter</module>
+>>>>>>> abe4dea4ba004be65835144279c9acd12d99ef26
 	</modules>
 	<packaging>pom</packaging>
 
-	<name>parent</name>
+	<name>根项目</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -31,6 +37,7 @@
 	</properties>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -41,6 +48,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
